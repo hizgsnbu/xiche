@@ -1,0 +1,267 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. 中控接口 &mdash; xiche 0.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="xiche 0.0 documentation" href="index.html"/>
+        <link rel="next" title="3. 前端接口" href="front.html"/>
+        <link rel="prev" title="1. 总括" href="main.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> xiche
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="main.html">1. 总括</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. 中控接口</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">2.1. 测试域名</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">2.2. 车牌识别</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">2.3. 二维码识别</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">2.4. 洗车状态：</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="front.html">3. 前端接口</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">xiche</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>2. 中控接口</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/zk.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>2. 中控接口<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2>2.1. 测试域名<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">xc</span><span class="o">.</span><span class="n">enjoyst</span><span class="o">.</span><span class="n">com</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>2.2. 车牌识别<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>当汽车开到中控时，中控将识别到的车牌以及终端唯一识别码一起回传给服务器，服务器返回是否可以放行洗车</p>
+<p>参数：</p>
+<p>车牌信息</p>
+<p>终端唯一识别码：</p>
+<p>返回：返回一个洗车Session ID， 该ID为空时不能洗车，需要扫二维码或是付费。不为空时放行。</p>
+<p>中控获取new session:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>/zk/new_session/?chepai=川A1234&amp;local=001
+</pre></div>
+</div>
+<p>返回:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+        <span class="n">session</span><span class="p">:</span><span class="mi">21234</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">或者</span>
+<span class="p">{</span>
+        <span class="n">session</span><span class="p">:</span><span class="n">null</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>2.3. 二维码识别<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>当用户通过二维码扫描洗车时，中控需要将识别到的车牌（未识别到传空车牌即可），以及二维码信息，还有中控终端唯一识别码一起传给服务器。服务器返回是否可以放行洗车。</p>
+<p>参数：</p>
+<p>车牌信息 （未识别到时可以为空）</p>
+<p>二维码信息</p>
+<p>终端唯一识别码</p>
+<p>返回：返回一个洗车Session ID , 该ID为空时二维码无效不能洗车，不为空时放行洗车。</p>
+<p>如果中控不能扫描，则通过二维码洗车,前端直接构造地址为:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>/zk/qr/?customer=111&amp;local=001
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>2.4. 洗车状态：<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>中控从开始洗车到洗车完成，上传状态给后台服务器。一次洗车由 开始状态-中间状态-结束状态 组成，目前暂时只提供开始和结束状态API。在一次洗车时过程中，每次状态都需要上传之前的Track ID。</p>
+<p>参数 ：</p>
+<p>Session ID</p>
+<p>状态 （开始或是结束）</p>
+<p>终端唯一识别码</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>/zk/start/?session=1234
+/zk/end/?session=12314
+</pre></div>
+</div>
+<p>返回:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">status</span><span class="p">:</span><span class="s1">&#39;success&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="front.html" class="btn btn-neutral float-right" title="3. 前端接口" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="main.html" class="btn btn-neutral" title="1. 总括" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, coblan.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

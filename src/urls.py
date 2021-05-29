@@ -20,4 +20,9 @@ from customer import views as cus_view
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^hook/$',cus_view.hook),
+    
+    url(r'^zk/new_session/$',cus_view.new_session),
+    url(r'^zk/qr/$',cus_view.qr),
+    url(r'^zk/start/$',cus_view.start),
+    url(r'^zk/end/$',cus_view.end),
 ]
