@@ -55,7 +55,7 @@
 
 如果中控不能扫描，则通过二维码洗车,前端直接构造地址为::
 
-	/zk/qr/?customer=111&local=001
+	/zk/qr/?customer=2&local=001
 	
 
 洗车状态：

@@ -13,3 +13,5 @@ DATABASES = {
         'PORT': '3306',                      # Set to empty string for default.
     }
 }
+
+DOMAIN='xc.enjoyst.com'
