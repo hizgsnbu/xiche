@@ -25,4 +25,6 @@ urlpatterns = [
     url(r'^zk/qr/$',cus_view.qr),
     url(r'^zk/start/$',cus_view.start),
     url(r'^zk/end/$',cus_view.end),
+    
+    url(r'^sms/getcode/$',cus_view.)
 ]

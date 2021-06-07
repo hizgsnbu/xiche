@@ -64,3 +64,34 @@ def end(request):
         return HttpResponse(json.dumps({'status':'success'}),content_type="application/json")
     except WashSessionModel.DoesNotExist:
         return HttpResponse(json.dumps({'error':'session not exist'}),content_type="application/json")
+
+
+
+def get_code(request):
+    mobile= request.GET.get('mobile')
+    send_type = request.GET.get('type','1')
+    if mobile:
+        # fake code =1111
+    return 
+    class SmsSendHandler(ApiBaseHandler):
+    
+        @validate_sign
+        def post(self):
+            try:
+                mobile = self.get_argument('mobile','')
+                #1: 注册
+                send_type = int(self.get_argument('type','1'))
+                print mobile,send_type
+                if mobile:
+                    res,msg = _userctl.sendsms(mobile,send_type)
+                    if res:
+                        self.resp['ret']= 1
+                    else:
+                        self.resp['ret'],self.resp['msg']= 0,msg
+                else:
+                    self.resp['ret']=0
+            except Exception,ex:
+                print ex
+                logger.error('sms/getcode:%s',str(ex))
+                self.resp['code'],self.resp['msg'] = 3 ,'server error'
+            self.send()    
