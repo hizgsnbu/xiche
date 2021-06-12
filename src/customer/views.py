@@ -68,30 +68,40 @@ def end(request):
 
 
 def get_code(request):
+    "通过短信发验证码"
     mobile= request.GET.get('mobile')
     send_type = request.GET.get('type','1')
     if mobile:
+        # Todo 通过短信发验证码
         # fake code =1111
-    return 
-    class SmsSendHandler(ApiBaseHandler):
+        pass
+    dc ={
+        'ret':1,
+    }
+    return HttpResponse(json.dumps(dc),content_type="application/json")
+    # class SmsSendHandler(ApiBaseHandler):
     
-        @validate_sign
-        def post(self):
-            try:
-                mobile = self.get_argument('mobile','')
-                #1: 注册
-                send_type = int(self.get_argument('type','1'))
-                print mobile,send_type
-                if mobile:
-                    res,msg = _userctl.sendsms(mobile,send_type)
-                    if res:
-                        self.resp['ret']= 1
-                    else:
-                        self.resp['ret'],self.resp['msg']= 0,msg
-                else:
-                    self.resp['ret']=0
-            except Exception,ex:
-                print ex
-                logger.error('sms/getcode:%s',str(ex))
-                self.resp['code'],self.resp['msg'] = 3 ,'server error'
-            self.send()    
+        # @validate_sign
+        # def post(self):
+            # try:
+                # mobile = self.get_argument('mobile','')
+                # #1: 注册
+                # send_type = int(self.get_argument('type','1'))
+                # print mobile,send_type
+                # if mobile:
+                    # res,msg = _userctl.sendsms(mobile,send_type)
+                    # if res:
+                        # self.resp['ret']= 1
+                    # else:
+                        # self.resp['ret'],self.resp['msg']= 0,msg
+                # else:
+                    # self.resp['ret']=0
+            # except Exception,ex:
+                # print ex
+                # logger.error('sms/getcode:%s',str(ex))
+                # self.resp['code'],self.resp['msg'] = 3 ,'server error'
+            # self.send()    
+        
+    
+def sss(request):
+    sms/validatecode
