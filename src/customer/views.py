@@ -79,29 +79,15 @@ def get_code(request):
         'ret':1,
     }
     return HttpResponse(json.dumps(dc),content_type="application/json")
-    # class SmsSendHandler(ApiBaseHandler):
+   
+def valide_sms(request):
+    mobile=request.GET.get('mobile')
+    vcode=request.GET.get('vcode')
+    send_type=int(request.GET.get('type',1))
+    dc={}
+    if mobile and vcode:
+        dc['ret']= 1  # 1好像是代表成功
+    return HttpResponse(json.dumps(dc),content_type="application/json")
+
+def user_login(request):
     
-        # @validate_sign
-        # def post(self):
-            # try:
-                # mobile = self.get_argument('mobile','')
-                # #1: 注册
-                # send_type = int(self.get_argument('type','1'))
-                # print mobile,send_type
-                # if mobile:
-                    # res,msg = _userctl.sendsms(mobile,send_type)
-                    # if res:
-                        # self.resp['ret']= 1
-                    # else:
-                        # self.resp['ret'],self.resp['msg']= 0,msg
-                # else:
-                    # self.resp['ret']=0
-            # except Exception,ex:
-                # print ex
-                # logger.error('sms/getcode:%s',str(ex))
-                # self.resp['code'],self.resp['msg'] = 3 ,'server error'
-            # self.send()    
-        
-    
-def sss(request):
-    sms/validatecode

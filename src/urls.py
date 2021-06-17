@@ -26,5 +26,7 @@ urlpatterns = [
     url(r'^zk/start/$',cus_view.start),
     url(r'^zk/end/$',cus_view.end),
     
-    url(r'^sms/getcode/$',cus_view.)
+    url(r'^sms/getcode/$',cus_view.get_code),
+    url(r'^sms/validatecode/',cus_view.valide_sms),
+    url(r'^user/login$',cus_view.user_login)
 ]
